@@ -1,7 +1,29 @@
+.brand-logo {
+	margin-left: 15px;
+}
 .subreddit-input {
 	position: relative;
-	left: 100px;
+	left: 110px;
 }
 .nav-wrapper {
 	background-color: #444;
+}
+.post-list {
+	position: relative;
+	left: 20px;
+	width: 40%;
+}
+.post-score {
+	float: left;
+	margin-right: 20px;
+}
+.post-title {
+}
+.post-thumbnail {
+	float: right;
+	margin-bottom: 30px;
+}
+.post-details {
+	float: left;
+	width: 57%;
 }

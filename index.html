@@ -52,10 +52,46 @@
 			</nav>
 
 			<ul>
-				<li class="card" ng-repeat = "post in postlist">
-					{{post.name}}
+				<li class="card post-list" ng-repeat="post in posts" ng-click="openPost(post.data.id)">
+					<div class="card-content">
+						<div class="post-score">
+							{{post.data.score}}
+						</div>
+						<img src="{{post.data.thumbnail}}" class="post-thumbnail" height="50" width="50">
+						<a  class="post-title waves-effect waves-teal">
+							{{post.data.title}}
+						</a>
+
+					</div>
 				</li>
 			</ul>
+
+			<div class="card post-details">
+				<div class="card-content">
+				Test content
+				</div>
+			</div>
+
+
+			<footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">reddit</h5>
+                <p class="grey-text text-lighten-4">a clean and snappy reddit client</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            Hosted by Github
+            <a class="grey-text text-lighten-4 right" href="https://github.com/cyalins/reddit">GitHub Repository</a>
+            </div>
+          </div>
+        </footer>
 
 		</div>
 	</body>
