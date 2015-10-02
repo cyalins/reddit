@@ -59,6 +59,7 @@
 							<div class="post-score">
 								{{post.data.score}}
 							</div>
+							<a class="waves-effect waves-dark btn-flat" href="{{post.data.url}}"><i class="material-icons left">open_in_browser</i>open</a>
 							<img src="{{post.data.thumbnail}}" class="post-thumbnail" height="50" width="50">
 							<a  class="post-title waves-effect waves-teal" ng-click="openPost(post.data.id)">
 								{{post.data.title}}
