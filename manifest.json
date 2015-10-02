@@ -1,0 +1,12 @@
+{
+	// "manifest_version": 2,
+	"name": "reddit chrome",
+	"description": "clean and snappy web client for reddit",
+	"version": "0.1",
+	"app": {
+		"background": {
+			"scripts": ["background.js"]
+		}
+	},
+	"content-security-policy": "img-src *"
+}

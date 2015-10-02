@@ -1,3 +1,6 @@
+* {
+	font-family: 'Roboto';
+}
 .brand-logo {
 	margin-left: 15px;
 }
@@ -8,10 +11,16 @@
 .nav-wrapper {
 	background-color: #444;
 }
+.post-list-holder {
+	/*width: auto;*/
+	max-height: 600px;
+	overflow: scroll;
+}
 .post-list {
 	position: relative;
-	left: 20px;
-	width: 40%;
+	left: 5px;
+	margin-right: 7px;
+	/*width: 40%;*/
 }
 .post-score {
 	float: left;
@@ -23,7 +32,15 @@
 	float: right;
 	margin-bottom: 30px;
 }
+.post-list-holder {
+	/*width: auto;*/
+	max-height: 600px;
+	overflow: scroll;
+}
 .post-details {
 	float: left;
-	width: 57%;
+	/*width: 57%;*/
+}
+.materialboxed {
+	overflow: scroll !important;
 }

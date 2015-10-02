@@ -23,75 +23,84 @@
       <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
       <script type="text/javascript" src="bower_components/Materialize/dist/js/materialize.min.js"></script>
       	<div ng-controller="SubredditCtrl">
-			<nav>
-			    <div class="nav-wrapper">
-			      <a href="index.html" class="brand-logo">reddit</a>
-			      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-			      <ul class="left">
-			      	<form ng-submit="submitSubreddit(subreddit)">
-				        <div class="input-field subreddit-input">
-				          <input id="search" type="search" required ng-model="subreddit">
-				          <label for="search">r</label>
-				          <i class="material-icons">close</i>
-				        </div>
-				    </form>
-			      </ul>
-			      <ul class="right hide-on-med-and-down">
-			        <li><a href="sass.html"><i class="material-icons">search</i></a></li>
-			        <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
-			        <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
-			        <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
-			      </ul>
-			      <ul class="side-nav" id="mobile-demo">
-			        <li><a href="sass.html"><i class="material-icons">search</i></a></li>
-			        <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
-			        <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
-			        <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
-			      </ul>
-			    </div>
-			</nav>
-
-			<ul>
-				<li class="card post-list" ng-repeat="post in posts" ng-click="openPost(post.data.id)">
-					<div class="card-content">
-						<div class="post-score">
-							{{post.data.score}}
+      		<div class="navbar-fixed">
+				<nav>
+				    <div class="nav-wrapper">
+				      <a href="index.html" class="brand-logo">reddit</a>
+				      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+				      <ul class="left">
+				      	<form ng-submit="submitSubreddit(subreddit)">
+					        <div class="input-field subreddit-input">
+					          <input id="search" type="search" required ng-model="subreddit">
+					          <label for="search">r</label>
+					          <i class="material-icons">close</i>
+					        </div>
+					    </form>
+				      </ul>
+				      <ul class="right hide-on-med-and-down">
+				        <li><a href="sass.html"><i class="material-icons">search</i></a></li>
+				        <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
+				        <li><a ng-click="submitSubreddit()"><i class="material-icons">refresh</i></a></li>
+				        <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
+				      </ul>
+				      <ul class="side-nav" id="mobile-demo">
+				        <li><a href="sass.html"><i class="material-icons">search</i></a></li>
+				        <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
+				        <li><a ng-click="submitSubreddit()"><i class="material-icons">refresh</i></a></li>
+				        <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
+				      </ul>
+				    </div>
+				</nav>
+			</div>
+			<div class="row">
+				<ul class="post-list-holder col s4">
+					<li class="card post-list" ng-repeat="post in posts">
+						<div class="card-content">
+							<div class="post-score">
+								{{post.data.score}}
+							</div>
+							<img src="{{post.data.thumbnail}}" class="post-thumbnail" height="50" width="50">
+							<a  class="post-title waves-effect waves-teal" ng-click="openPost(post.data.id)">
+								{{post.data.title}}
+							</a>
 						</div>
-						<img src="{{post.data.thumbnail}}" class="post-thumbnail" height="50" width="50">
-						<a  class="post-title waves-effect waves-teal">
-							{{post.data.title}}
-						</a>
-
+					</li>
+				</ul>
+				<div class="col s1">|</div>
+				<div class="post-details-holder">
+					<div class="card blue-grey post-details col s6">
+						<div class="card-content white-text">
+							<span class="card-title">
+								{{selectedPostOriginalPost.title}}
+							</span>
+							<p>
+								{{selectedPostOriginalPost.selftext}}
+							</p>
+							<img class="materialboxed" src="{{selectedPostOriginalPost.url}}" width="100%" height="auto">
+						</div>
 					</div>
-				</li>
-			</ul>
-
-			<div class="card post-details">
-				<div class="card-content">
-				Test content
 				</div>
 			</div>
 
-
 			<footer class="page-footer">
-          <div class="container">
-            <div class="row">
-              <div class="col l6 s12">
-                <h5 class="white-text">reddit</h5>
-                <p class="grey-text text-lighten-4">a clean and snappy reddit client</p>
-              </div>
-              <div class="col l4 offset-l2 s12">
-                
-              </div>
-            </div>
-          </div>
-          <div class="footer-copyright">
-            <div class="container">
-            Hosted by Github
-            <a class="grey-text text-lighten-4 right" href="https://github.com/cyalins/reddit">GitHub Repository</a>
-            </div>
-          </div>
-        </footer>
+	          <div class="container">
+	            <div class="row">
+	              <div class="col l6 s12">
+	                <h5 class="white-text">reddit</h5>
+	                <p class="grey-text text-lighten-4">a clean and snappy web client for reddit</p>
+	              </div>
+	              <div class="col l4 offset-l2 s12">
+	                
+	              </div>
+	            </div>
+	          </div>
+	          <div class="footer-copyright">
+	            <div class="container">
+	            Hosted by GitHub. Designed with Materialize.
+	            <a class="grey-text text-lighten-4 right" href="https://github.com/cyalins/reddit">GitHub Repository</a>
+	            </div>
+	          </div>
+	        </footer>
 
 		</div>
 	</body>
