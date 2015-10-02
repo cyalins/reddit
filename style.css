@@ -13,7 +13,7 @@
 }
 .post-list-holder {
 	/*width: auto;*/
-	max-height: 600px;
+	max-height: 550px;
 	overflow: scroll;
 }
 .post-list {
@@ -32,14 +32,20 @@
 	float: right;
 	margin-bottom: 30px;
 }
-.post-list-holder {
+.post-details-holder {
 	/*width: auto;*/
-	max-height: 600px;
+	max-height: 550px;
 	overflow: scroll;
 }
 .post-details {
 	float: left;
 	/*width: 57%;*/
+}
+.post-comments {
+
+}
+.comment-author {
+	font-weight: bold;
 }
 .materialboxed {
 	overflow: scroll !important;

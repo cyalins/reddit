@@ -6,6 +6,7 @@
       <!--Import materialize.css-->
       <link type="text/css" rel="stylesheet" href="bower_components/Materialize/dist/css/materialize.min.css"  media="screen,projection"/>
       <script src="bower_components/angular/angular.min.js"></script>
+      <link rel="stylesheet" href="bower_components/animate-css/animate.css">
 
       <!-- Project JS -->
       <script src="controllers.js"></script>
@@ -66,24 +67,48 @@
 							</a>
 						</div>
 					</li>
+					<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+					    <a class="btn-floating btn-large red">
+					      <i class="large material-icons">add</i>
+					    </a>
+					    <ul>
+					      <li><a class="btn-floating blue"><i class="material-icons">link</i></i></a></li>
+					      <li><a class="btn-floating teal darken-1"><i class="material-icons">create</i></a></li>
+					    </ul>
+					  </div>
 				</ul>
 				<div class="col s1">|</div>
-				<div class="post-details-holder">
-					<div class="card blue-grey post-details col s6">
+				<div class="post-details-holder col s6">
+					<div class="card blue-grey post-details animated fadeInUp">
 						<div class="card-content white-text">
 							<span class="card-title">
 								{{selectedPostOriginalPost.title}}
 							</span>
+							<a class="waves-effect waves-light btn-flat" href="{{selectedPostOriginalPost.url}}"><i class="material-icons left">open_in_browser</i>open</a>
 							<p>
 								{{selectedPostOriginalPost.selftext}}
 							</p>
 							<img class="materialboxed" src="{{selectedPostOriginalPost.url}}" width="100%" height="auto">
 						</div>
 					</div>
+					<ul class="collection post-comments">
+						<li class="collection-item avatar animated fadeInUp" ng-repeat="comment in selectedPostComments">
+							<a>
+							{{comment.data.score}} points
+							</a>
+							<span class="title comment-author">
+								{{comment.data.author}}
+							</span>
+							<p>
+								{{comment.data.body}}
+							</p>
+							<!-- <img class="materialboxed" src="{{selectedPostOriginalPost.url}}" width="100%" height="auto"> -->
+						</div>
+					</div>
 				</div>
 			</div>
 
-			<footer class="page-footer">
+			<!-- <footer class="page-footer">
 	          <div class="container">
 	            <div class="row">
 	              <div class="col l6 s12">
@@ -101,7 +126,7 @@
 	            <a class="grey-text text-lighten-4 right" href="https://github.com/cyalins/reddit">GitHub Repository</a>
 	            </div>
 	          </div>
-	        </footer>
+	        </footer> -->
 
 		</div>
 	</body>

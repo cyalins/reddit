@@ -46,6 +46,8 @@ angular.module('redditApp',[])
 				console.log(response);
 				$scope.selectedPostOriginalPost = $scope.selectedPostDetails.data[0].data.children[0].data;
 				console.log($scope.selectedPostOriginalPost.selftext);
+				$scope.selectedPostComments = $scope.selectedPostDetails.data[1].data.children;
+				console.log($scope.selectedPostComments);
 			});
 		};
 	});
