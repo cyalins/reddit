@@ -92,7 +92,7 @@
 						</div>
 					</div>
 					<ul class="collection post-comments">
-						<li class="collection-item avatar animated fadeInUp" ng-repeat="comment in selectedPostComments">
+						<li class="collection-item animated fadeInUp" ng-repeat="comment in selectedPostComments">
 							<a>
 							{{comment.data.score}} points
 							</a>
@@ -103,7 +103,60 @@
 								{{comment.data.body}}
 							</p>
 							<!-- <img class="materialboxed" src="{{selectedPostOriginalPost.url}}" width="100%" height="auto"> -->
-						</div>
+							<ul class="collection post-comment-replies">
+								<li class="collection-item animated fadeInUp" ng-repeat="commentreply in comment.data.replies.data.children">
+									<!-- <a><i class="material-icons">reply</i></a> -->
+									<a>
+									{{commentreply.data.score}} points
+									</a>
+									<span class="title comment-author">
+										{{commentreply.data.author}}
+									</span>
+									<p>
+										{{commentreply.data.body}}
+									</p>
+									<ul class="collection post-comment-replies-2">
+										<li class="collection-item animated fadeInUp" ng-repeat="commentreply2 in commentreply.data.replies.data.children">
+											<a>
+											{{commentreply2.data.score}} points
+											</a>
+											<span class="title comment-author">
+												{{commentreply2.data.author}}
+											</span>
+											<p>
+												{{commentreply2.data.body}}
+											</p>
+											<!-- <ul class="collection post-comment-replies-3">
+												<li class="collection-item animated fadeInUp" ng-repeat="commentreply3 in commentreply.data.replies.data.children">
+													<a>
+													{{commentreply3.data.score}} points
+													</a>
+													<span class="title comment-author">
+														{{commentreply3.data.author}}
+													</span>
+													<p>
+														{{commentreply3.data.body}}
+													</p>
+													<ul class="collection post-comment-replies-4">
+														<li class="collection-item animated fadeInUp" ng-repeat="commentreply4 in commentreply.data.replies.data.children">
+															<a>
+															{{commentreply4.data.score}} points
+															</a>
+															<span class="title comment-author">
+																{{commentreply4.data.author}}
+															</span>
+															<p>
+																{{commentreply4.data.body}}
+															</p>
+														</li>
+													</ul>
+												</li>
+											</ul> -->
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
 					</div>
 				</div>
 			</div>
