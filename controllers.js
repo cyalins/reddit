@@ -17,7 +17,8 @@ angular.module('redditApp',['angularMoment'])
 			$scope.loadingSelectedPost = true;
 			$http({
 				method: 'GET',
-				url: 'https://www.reddit.com/r/'+ subreddit + '/hot.json',
+				url: 'https://www.reddit.com/r/'+ subreddit + '.json',
+				data: {'t': 'all'},
 				headers: {
 					// "Authorization": 'bearer yODuzy2H75ZV2Ll0noCuUwnNx-4',
 					// "Access-Control-Allow-Origin": "*",
@@ -38,6 +39,7 @@ angular.module('redditApp',['angularMoment'])
 		$scope.hide2 = true;
 		$scope.hide3 = false;
 		$scope.hide4 = false;
+		$scope.showingPost = false;
 
 		$scope.openPost = function(postID) {
 			$scope.selectedPostID = postID;
@@ -52,6 +54,7 @@ angular.module('redditApp',['angularMoment'])
 					// "Accept": "application/x-www-form-urlencoded"
 				}
 			}).then(function(response){
+				$scope.showingPost = true;
 				$scope.loadingSelectedPost = false;
 				$scope.selectedPostDetails = response;
 				console.log(response);

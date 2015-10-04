@@ -71,7 +71,7 @@
 				    </div>
 				</nav>
 			</div>
-			<div class="row">
+			<div class="row main-content">
 				<ul class="post-list-holder col s4">
 					<li class="card post-list animated fadeInUp" ng-repeat="post in posts">
 						<div class="card-content">
@@ -97,7 +97,7 @@
 					  </div>
 				</ul>
 				<!-- <div class="col s1">|</div> -->
-				<div class="post-details-holder col s8">
+				<div class="post-details-holder col s8" ng-show="showingPost">
 					<div class="card blue-grey post-details animated fadeInUp">
 						<div class="card-content white-text">
 							<span class="card-title">
@@ -111,9 +111,11 @@
 							<p>
 								{{selectedPostOriginalPost.selftext}}
 							</p>
-							<img class="materialboxed" src="{{selectedPostOriginalPost.url}}" width="100%" height="auto">
+							
 						</div>
+
 					</div>
+					<img class="card materialboxed animated fadeInUp" src="{{selectedPostOriginalPost.url}}" width="100%" height="auto" data-caption="{{selectedPostOriginalPost.title}}">
 					<ul class="collection post-comments">
 						<li class="collection-item animated fadeInUp" ng-repeat="comment in selectedPostComments">
 							<div class="comment-div waves-effect" ng-click="hide=!hide">

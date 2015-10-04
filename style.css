@@ -14,6 +14,9 @@
 .dropdown-button {
 	min-width: 200px;
 }
+.main-content {
+	background-image: url('http://traveldilse.com/wp-content/uploads/2014/07/blurred-background-81.jpg');
+}
 .post-list-holder {
 	/*width: auto;*/
 	max-height: 580px;
@@ -35,18 +38,25 @@
 	float: right;
 	margin-bottom: 30px;
 }
-.post-details-holder {
+.post-details-holder:not(.materialboxed) {
 	/*width: auto;*/
 	max-height: 580px;
 	overflow: scroll;
 }
 .post-details {
-	float: left;
+	/*float: left;*/
 	min-width: 100%;
 	/*width: 57%;*/
 }
 .post-comments {
 
+}
+.materialboxed {
+	position: relative;
+	/*z-index: 10000;*/
+}
+.materialbox-overlay {
+	opacity: 0.3 !important;
 }
 .collection-item {
 	min-width: 100%;
