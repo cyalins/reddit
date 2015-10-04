@@ -7,6 +7,8 @@
       <link type="text/css" rel="stylesheet" href="bower_components/Materialize/dist/css/materialize.min.css"  media="screen,projection"/>
       <script src="bower_components/angular/angular.min.js"></script>
       <link rel="stylesheet" href="bower_components/animate-css/animate.css">
+      <script src="bower_components/moment/moment.js"></script>
+	<script src="bower_components/angular-moment-beta/angular-moment.js"></script>
 
       <!-- Project JS -->
       <script src="controllers.js"></script>
@@ -39,6 +41,19 @@
 					    </form>
 				      </ul>
 				      <ul class="right hide-on-med-and-down">
+				      	<li>
+					      	 <!-- Dropdown Trigger -->
+							<a class='dropdown-button btn' href='#' data-activates='dropdown1'>Favourites</a>
+							  <!-- Dropdown Structure -->
+							<ul id='dropdown1' class='dropdown-content'>
+								<li><a ng-click="submitSubreddit('All')">All</a></li>
+								<li><a ng-click="submitSubreddit('FrontPage')">FrontPage</a></li>
+								<li class="divider"></li>
+								<div ng-repeat="item in favourites | orderBy: 'name'">
+								    <li><a ng-click="submitSubreddit(item.name)">{{item.name}}</a></li>
+							    </div>
+							</ul>
+						</li>
 				        <li><a href="sass.html"><i class="material-icons">search</i></a></li>
 				        <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
 				        <li><a ng-click="submitSubreddit()"><i class="material-icons">refresh</i></a></li>
@@ -47,20 +62,24 @@
 				      <ul class="side-nav" id="mobile-demo">
 				        <li><a href="sass.html"><i class="material-icons">search</i></a></li>
 				        <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
-				        <li><a ng-click="submitSubreddit()"><i class="material-icons">refresh</i></a></li>
+				        <li><a ng-click="submitSubreddit($scope.subreddit)"><i class="material-icons">refresh</i></a></li>
 				        <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
 				      </ul>
+				      <div class="progress" ng-show="loadingSelectedPost">
+					    <div class="indeterminate"></div>
+						</div>
 				    </div>
 				</nav>
 			</div>
 			<div class="row">
 				<ul class="post-list-holder col s4">
-					<li class="card post-list" ng-repeat="post in posts">
+					<li class="card post-list animated fadeInUp" ng-repeat="post in posts">
 						<div class="card-content">
 							<div class="post-score">
-								{{post.data.score}}
+								{{post.data.score}}  posted 
+								<span am-time-ago="post.data.created_utc | amFromUnix"></span> in /r/{{post.data.subreddit}}
+								<a class="waves-effect waves-dark btn-flat" href="{{post.data.url}}"><i class="material-icons left">open_in_browser</i>open</a>
 							</div>
-							<a class="waves-effect waves-dark btn-flat" href="{{post.data.url}}"><i class="material-icons left">open_in_browser</i>open</a>
 							<img src="{{post.data.thumbnail}}" class="post-thumbnail" height="50" width="50">
 							<a  class="post-title waves-effect waves-teal" ng-click="openPost(post.data.id)">
 								{{post.data.title}}
@@ -84,6 +103,10 @@
 							<span class="card-title">
 								{{selectedPostOriginalPost.title}}
 							</span>
+
+							posted 
+							<span am-time-ago="selectedPostOriginalPost.created_utc | amFromUnix"></span>
+							by {{selectedPostOriginalPost.author}}
 							<a class="waves-effect waves-light btn-flat" href="{{selectedPostOriginalPost.url}}"><i class="material-icons left">open_in_browser</i>open</a>
 							<p>
 								{{selectedPostOriginalPost.selftext}}
@@ -93,65 +116,77 @@
 					</div>
 					<ul class="collection post-comments">
 						<li class="collection-item animated fadeInUp" ng-repeat="comment in selectedPostComments">
-							<a>
-							{{comment.data.score}} points
-							</a>
-							<span class="title comment-author">
-								{{comment.data.author}}
-							</span>
-							<p>
-								{{comment.data.body}}
-							</p>
-							<!-- <img class="materialboxed" src="{{selectedPostOriginalPost.url}}" width="100%" height="auto"> -->
+							<div ng-click="hide=!hide">
+								<a>
+								{{comment.data.score}} points
+								</a>
+								<span class="title comment-author">
+									{{comment.data.author}}
+								</span>
+								about <span am-time-ago="comment.data.created_utc | amFromUnix"></span>
+								<p>
+									{{comment.data.body}}
+								</p>
+							</div>
 							<ul class="collection post-comment-replies">
-								<li class="collection-item animated fadeInUp" ng-repeat="commentreply in comment.data.replies.data.children">
+								<li class="collection-item animated fadeInUp" ng-repeat="commentreply in comment.data.replies.data.children" ng-show="hide">
 									<!-- <a><i class="material-icons">reply</i></a> -->
-									<a>
-									{{commentreply.data.score}} points
-									</a>
-									<span class="title comment-author">
-										{{commentreply.data.author}}
-									</span>
-									<p>
-										{{commentreply.data.body}}
-									</p>
+									<div ng-click="hide2=!hide2">
+										<a>
+										{{commentreply.data.score}} points
+										</a>
+										<span class="title comment-author">
+											{{commentreply.data.author}}
+										</span>
+										about <span am-time-ago="commentreply.data.created_utc | amFromUnix"></span>
+										<p>
+											{{commentreply.data.body}}
+										</p>
+									</div>
 									<ul class="collection post-comment-replies-2">
-										<li class="collection-item animated fadeInUp" ng-repeat="commentreply2 in commentreply.data.replies.data.children">
-											<a>
-											{{commentreply2.data.score}} points
-											</a>
-											<span class="title comment-author">
-												{{commentreply2.data.author}}
-											</span>
-											<p>
-												{{commentreply2.data.body}}
-											</p>
-											<!-- <ul class="collection post-comment-replies-3">
-												<li class="collection-item animated fadeInUp" ng-repeat="commentreply3 in commentreply.data.replies.data.children">
-													<a>
-													{{commentreply3.data.score}} points
-													</a>
-													<span class="title comment-author">
-														{{commentreply3.data.author}}
-													</span>
-													<p>
-														{{commentreply3.data.body}}
-													</p>
+										<li class="collection-item animated fadeInUp" ng-repeat="commentreply2 in commentreply.data.replies.data.children" ng-show="hide2">
+											<div ng-click="hide3=!hide3">
+												<a>
+												{{commentreply2.data.score}} points
+												</a>
+												<span class="title comment-author">
+													{{commentreply2.data.author}}
+												</span>
+												about <span am-time-ago="commentreply2.data.created_utc | amFromUnix"></span>
+												<p>
+													{{commentreply2.data.body}}
+												</p>
+											</div>
+											<ul class="collection post-comment-replies-3">
+												<li class="collection-item animated fadeInUp" ng-repeat="commentreply3 in commentreply.data.replies.data.children" ng-show="hide3">
+													<div ng-click="hide4=!hide4">
+														<a>
+														{{commentreply3.data.score}} points
+														</a>
+														<span class="title comment-author">
+															{{commentreply3.data.author}}
+														</span>
+														about <span am-time-ago="commentreply3.data.created_utc | amFromUnix"></span>
+														<p>
+															{{commentreply3.data.body}}
+														</p>
+													</div>
 													<ul class="collection post-comment-replies-4">
-														<li class="collection-item animated fadeInUp" ng-repeat="commentreply4 in commentreply.data.replies.data.children">
+														<li class="collection-item animated fadeInUp" ng-repeat="commentreply4 in commentreply.data.replies.data.children" ng-show="hide4">
 															<a>
 															{{commentreply4.data.score}} points
 															</a>
 															<span class="title comment-author">
 																{{commentreply4.data.author}}
 															</span>
+															about <span am-time-ago="commentreply4.data.created_utc | amFromUnix"></span>
 															<p>
 																{{commentreply4.data.body}}
 															</p>
 														</li>
 													</ul>
 												</li>
-											</ul> -->
+											</ul>
 										</li>
 									</ul>
 								</li>

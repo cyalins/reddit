@@ -11,9 +11,12 @@
 .nav-wrapper {
 	background-color: #444;
 }
+.dropdown-button {
+	min-width: 200px;
+}
 .post-list-holder {
 	/*width: auto;*/
-	max-height: 550px;
+	max-height: 580px;
 	overflow: scroll;
 }
 .post-list {
@@ -34,11 +37,12 @@
 }
 .post-details-holder {
 	/*width: auto;*/
-	max-height: 550px;
+	max-height: 580px;
 	overflow: scroll;
 }
 .post-details {
 	float: left;
+	min-width: 100%;
 	/*width: 57%;*/
 }
 .post-comments {
