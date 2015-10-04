@@ -116,7 +116,7 @@
 					</div>
 					<ul class="collection post-comments">
 						<li class="collection-item animated fadeInUp" ng-repeat="comment in selectedPostComments">
-							<div ng-click="hide=!hide">
+							<div class="comment-div waves-effect" ng-click="hide=!hide">
 								<a>
 								{{comment.data.score}} points
 								</a>
@@ -131,7 +131,7 @@
 							<ul class="collection post-comment-replies">
 								<li class="collection-item animated fadeInUp" ng-repeat="commentreply in comment.data.replies.data.children" ng-show="hide">
 									<!-- <a><i class="material-icons">reply</i></a> -->
-									<div ng-click="hide2=!hide2">
+									<div class="comment-div waves-effect" ng-click="hide2=!hide2">
 										<a>
 										{{commentreply.data.score}} points
 										</a>
@@ -145,7 +145,7 @@
 									</div>
 									<ul class="collection post-comment-replies-2">
 										<li class="collection-item animated fadeInUp" ng-repeat="commentreply2 in commentreply.data.replies.data.children" ng-show="hide2">
-											<div ng-click="hide3=!hide3">
+											<div class="comment-div waves-effect" ng-click="hide3=!hide3">
 												<a>
 												{{commentreply2.data.score}} points
 												</a>
@@ -158,8 +158,8 @@
 												</p>
 											</div>
 											<ul class="collection post-comment-replies-3">
-												<li class="collection-item animated fadeInUp" ng-repeat="commentreply3 in commentreply.data.replies.data.children" ng-show="hide3">
-													<div ng-click="hide4=!hide4">
+												<li class="collection-item animated fadeInUp" ng-repeat="commentreply3 in commentreply2.data.replies.data.children" ng-show="hide3">
+													<div class="comment-div waves-effect" ng-click="hide4=!hide4">
 														<a>
 														{{commentreply3.data.score}} points
 														</a>
@@ -172,7 +172,7 @@
 														</p>
 													</div>
 													<ul class="collection post-comment-replies-4">
-														<li class="collection-item animated fadeInUp" ng-repeat="commentreply4 in commentreply.data.replies.data.children" ng-show="hide4">
+														<li class="collection-item animated fadeInUp" ng-repeat="commentreply4 in commentreply3.data.replies.data.children" ng-show="hide4">
 															<a>
 															{{commentreply4.data.score}} points
 															</a>

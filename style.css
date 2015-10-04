@@ -48,6 +48,12 @@
 .post-comments {
 
 }
+.collection-item {
+	min-width: 100%;
+}
+.comment-div {
+	min-width: 100%;
+}
 .comment-author {
 	font-weight: bold;
 }
